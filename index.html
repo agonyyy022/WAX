@@ -63,13 +63,17 @@ header{max-width:1220px;margin:auto;padding:27px 28px 12px;display:flex;align-it
 .record{width:100%;height:100%;border-radius:50%;position:relative;overflow:hidden;border:5px solid #101117;box-shadow:inset 0 0 0 3px #ffffff23,inset 0 0 10px 5px #000b;animation:rotate360 var(--speed,1.8s) linear infinite;animation-play-state:paused;background:repeating-radial-gradient(circle,#0000 0 1px,#00000028 2px 3px,#ffffff14 4px 5px,#0000 6px 8px),radial-gradient(circle at 28% 20%,#ffffff55,transparent 15%),radial-gradient(circle at 67% 86%,#0008,transparent 48%),radial-gradient(circle at center,var(--disc-light) 0%,var(--disc) 34%,var(--disc-light) 57%,var(--disc) 75%,#080a0e 99%)}
 .record.playing{animation-play-state:running}
 .record:after{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 35deg,transparent 0 27%,#ffffff15 33%,transparent 38% 72%,#ffffff09 85%,transparent 90%);pointer-events:none}
-.record.pattern-marble:before{content:"";position:absolute;inset:0;border-radius:50%;background:repeating-conic-gradient(from 30deg,#ffffff00 0deg 18deg,#ffffff38 19deg 21deg,#10101429 22deg 35deg,#ffffff00 39deg 52deg);mix-blend-mode:screen;opacity:.65}
-.record.pattern-splatter:before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 16% 58%,#ffdbc2 0 3px,transparent 4px),radial-gradient(circle at 81% 33%,#f6f2ed 0 7px,transparent 8px),radial-gradient(circle at 33% 13%,#e4edfa 0 5px,transparent 6px),radial-gradient(circle at 79% 69%,#ffe3c3 0 9px,transparent 10px),radial-gradient(circle at 48% 84%,#e7d3fc 0 3px,transparent 4px),radial-gradient(circle at 20% 26%,#ffd6e7 0 6px,transparent 7px),radial-gradient(circle at 95% 54%,#ffe8bb 0 6px,transparent 7px);opacity:.85}
+/* Painted record textures are rendered with Canvas and overlaid below the label. */
+.record.pattern-marble:before,.record.pattern-splatter:before,.record.pattern-galaxy:before{
+  content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background-image:var(--vinyl-texture,none);background-size:100% 100%;background-position:center;
+  opacity:1;mix-blend-mode:normal;
+}
 .record.pattern-picture{background-image:repeating-radial-gradient(circle,#0000 0 1px,#0000001c 2px 3px,#ffffff14 4px 5px,#0000 6px 8px),radial-gradient(circle at center,transparent 0 29%,#00000010 53%,#00000035 80%,#07090d 100%),radial-gradient(circle at 28% 20%,#ffffff60,transparent 15%),radial-gradient(circle at 67% 86%,#0008,transparent 48%),var(--art);background-size:auto,auto,auto,auto,cover;background-position:center}
 .record.pattern-picture:before{content:"";position:absolute;inset:5.5%;border-radius:50%;border:1px solid #ffffff22;box-shadow:inset 0 0 0 1px #00000045;pointer-events:none}
 .record.pattern-clear{background-image:repeating-radial-gradient(circle,#0000 0 1px,#ffffff40 2px 3px,#ffffff18 4px 5px,#0000 6px 8px),radial-gradient(circle at 28% 20%,#ffffff6b,transparent 15%),radial-gradient(circle at 67% 86%,#00000024,transparent 48%),radial-gradient(circle at center,color-mix(in srgb,var(--disc) 40%, transparent) 0%,color-mix(in srgb,var(--disc) 16%, transparent) 52%,#ffffff25 77%,#00000010 100%);box-shadow:inset 0 0 0 3px #ffffff35,inset 0 0 10px 5px #00000036}
 .record.pattern-split{background-image:repeating-radial-gradient(circle,#0000 0 1px,#00000025 2px 3px,#ffffff12 4px 5px,#0000 6px 8px),radial-gradient(circle at 28% 20%,#ffffff50,transparent 15%),radial-gradient(circle at 67% 86%,#0008,transparent 48%),conic-gradient(from 0deg,var(--disc) 0 180deg,var(--disc2) 180deg 360deg)}
-.record.pattern-galaxy{background-image:repeating-radial-gradient(circle,#0000 0 1px,#00000025 2px 3px,#ffffff10 4px 5px,#0000 6px 8px),radial-gradient(circle at 30% 28%,#fff7 0 2px,transparent 3px),radial-gradient(circle at 77% 29%,#fff8 0 1.6px,transparent 2.6px),radial-gradient(circle at 60% 80%,#fff8 0 1.4px,transparent 2.4px),radial-gradient(circle at 17% 68%,#fff8 0 1.3px,transparent 2.2px),radial-gradient(circle at 45% 18%,#f4cfff 0 14px,transparent 23px),radial-gradient(circle at 72% 63%,#93cbff 0 19px,transparent 30px),radial-gradient(circle at 26% 78%,#f9d889 0 15px,transparent 24px),conic-gradient(from 210deg,var(--disc) 0 35%,#6d50b6 48%,#1c274e 67%,var(--disc2) 83%,var(--disc) 100%)}
+/* Original grooves and specular highlight remain over the painted designs. */
 .label-disc{width:33%;aspect-ratio:1;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;border:2px solid #f9d8b8;box-shadow:0 0 1px 1px #0009;background:radial-gradient(circle at center,#f4b7a7,#d88a89 60%,#ae5e73 100%);display:grid;place-items:center;overflow:hidden;padding:8px;text-align:center}
 .label-disc.covered{background-image:var(--art);background-size:cover;background-position:center}
 .label-disc .label-text{font-weight:950;font-size:clamp(7px,1.15vw,12px);line-height:1.25;letter-spacing:.06em;color:#3e2939;text-shadow:none}
@@ -421,7 +425,116 @@ function getSizeMeta(){const map={"12":{label:'12" LP',scale:1},"10":{label:'10"
 function updateSizeUI(){const meta=getSizeMeta();record.style.setProperty('--record-scale',meta.scale);$('sizePill').textContent=meta.label}
 function updateDiscUI(){const total=Math.max(1,Number(settings.discCount)||1);let current=Math.min(Math.max(1,Number(settings.currentDisc)||1),total);settings.currentDisc=current;$('discPill').textContent=`DISC ${current}/${total}`;const sel=$('currentDisc');Array.from(sel.options).forEach((opt,i)=>{opt.disabled=i+1>total});sel.value=String(current)}
 function updateSpecialRecordUI(){const isSeven=String(settings.recordSize)==='7';const useAdapter=isSeven&&!!settings.adapter45;const etched=!!settings.etchedB&&settings.currentSide==='B';$('adapterToggle').disabled=!isSeven;$('bigHole').classList.toggle('hidden',!isSeven);$('adapter45').classList.toggle('hidden',!useAdapter);record.classList.toggle('hole-large',isSeven);record.classList.toggle('etched-b',etched)}
-function setColor(hex,secondary=false){if(secondary){settings.color2=hex;$('customColor2').value=hex;document.documentElement.style.setProperty('--disc2',hex)}else{settings.color=hex;$('customColor').value=hex;document.documentElement.style.setProperty('--disc',hex);document.documentElement.style.setProperty('--disc-light',contrastColor(hex));Array.from($('swatches').children).forEach(x=>x.classList.toggle('active',x.dataset.color.toLowerCase()===(hex||'').toLowerCase()))}safeSave()}
+// Real paint/stone/cosmic textures: one procedurally painted tile for each pressing.
+// Generated locally, no libraries or image servers required. The same art is used in PNG/video exports.
+let waxPatternCanvas=null,waxPatternKey='',waxPatternTimer=null;
+function waxRGB(hex){const h=String(hex||'#17191e').replace('#','');return [0,2,4].map(i=>parseInt(h.slice(i,i+2),16)||0)}
+function waxMix(a,b,t){t=Math.max(0,Math.min(1,t));return [0,1,2].map(i=>a[i]+(b[i]-a[i])*t)}
+function waxClamp(v){return Math.max(0,Math.min(255,Math.round(v)))}
+function waxHex(rgb){return '#'+rgb.map(v=>waxClamp(v).toString(16).padStart(2,'0')).join('')}
+function waxHash(x,y){let h=(Math.imul(x|0,374761393)+Math.imul(y|0,668265263))|0;h=Math.imul(h^(h>>>13),1274126177);return ((h^(h>>>16))>>>0)/4294967295}
+function waxNoise(x,y){const ix=Math.floor(x),iy=Math.floor(y),fx=x-ix,fy=y-iy,u=fx*fx*(3-2*fx),v=fy*fy*(3-2*fy);const a=waxHash(ix,iy)*(1-u)+waxHash(ix+1,iy)*u,b=waxHash(ix,iy+1)*(1-u)+waxHash(ix+1,iy+1)*u;return a*(1-v)+b*v}
+function waxFBM(x,y){let sum=0,amp=.54,total=0;for(let o=0;o<4;o++){sum+=amp*waxNoise(x,y);total+=amp;x*=2.04;y*=2.04;amp*=.48}return sum/total}
+function waxRNG(seed){let x=seed>>>0;return()=>{x+=0x6D2B79F5;let z=x;z=Math.imul(z^(z>>>15),z|1);z^=z+Math.imul(z^(z>>>7),z|61);return ((z^(z>>>14))>>>0)/4294967296}}
+function makeWaxPattern(kind,primary,secondary){
+  const N=600,canvas=document.createElement('canvas');canvas.width=canvas.height=N;
+  const ctx=canvas.getContext('2d',{willReadFrequently:true});if(!ctx)return null;
+  const a=waxRGB(primary),b=waxRGB(secondary),white=[247,236,246],dark=waxMix(a,[6,8,19],.63);
+  const rng=waxRNG(kind==='splatter'?87203:kind==='galaxy'?9235:19748);
+  if(kind==='marble'||kind==='galaxy'){
+    const im=ctx.createImageData(N,N),d=im.data;
+    for(let y=0;y<N;y++)for(let x=0;x<N;x++){
+      const u=(x-N/2)/(N/2),v=(y-N/2)/(N/2),r=Math.hypot(u,v),i=(y*N+x)*4;
+      let col;
+      if(kind==='marble'){
+        // Domain-warped bands, drifting pigment and fine mineral veins.
+        const warp=waxFBM(u*2.45+7,v*2.45-4),micro=waxFBM(u*10.4-2,v*10.4+9);
+        const river=u*.78+v*.66+warp*1.36+micro*.21+Math.sin(v*3.9+u*1.8)*.10;
+        const ridges=Math.sin(river*12.6),ribbon=Math.max(0,Math.min(1,(ridges+.76)/1.52));
+        const t=ribbon*ribbon*(3-2*ribbon);
+        col=waxMix(a,b,t*.88+.04);
+        const veins=Math.exp(-Math.pow((Math.abs(ridges)-.06)/.085,2))*(.19+.42*micro);
+        const hairline=Math.exp(-Math.pow((Math.sin(river*29.2+.4*micro)-.91)/.078,2))*.11;
+        col=waxMix(col,white,Math.min(.68,veins*.66+hairline));
+        const tone=(micro-.5)*27 + (.5-r)*16;col=col.map(n=>n+tone);
+      }else{
+        // Fractal nebulae wrap around two curved galactic arms with dust lanes.
+        const coarse=waxFBM(u*2.5+18,v*2.5-9),fine=waxFBM(u*8.5-3,v*8.5+16);
+        const ang=Math.atan2(v,u),curl=ang*2.4-Math.log(r+.24)*5.2+(coarse-.5)*3.5;
+        const arm=Math.max(0,Math.cos(curl))**3;
+        const clouds=Math.max(0,(coarse*.54+fine*.46-.38)*2.6);
+        const edge=Math.max(0,1-r*.62),nebula=Math.min(1,(arm*.58+clouds*.8)*edge);
+        const core=Math.max(0,1-r*3.1)**2;
+        col=waxMix(waxMix(a,[4,7,25],.78),b,nebula*.70);
+        col=waxMix(col,[88,166,236],Math.max(0,Math.sin(curl+1.4))*nebula*.28);
+        col=waxMix(col,[245,131,200],Math.max(0,Math.sin(curl-1.5))*nebula*.28);
+        col=waxMix(col,[255,232,191],core*.57);
+        const dust=Math.max(0,.53-fine)*(arm*.72+.22);col=col.map(n=>n*(1-dust*.79));
+      }
+      const edgeShade=1-Math.max(0,(r-.63))*.34;
+      d[i]=waxClamp(col[0]*edgeShade);d[i+1]=waxClamp(col[1]*edgeShade);d[i+2]=waxClamp(col[2]*edgeShade);d[i+3]=255;
+    }
+    ctx.putImageData(im,0,0);
+    if(kind==='galaxy'){
+      // Dense starfield, brighter clusters, and a few diffraction spikes.
+      for(let k=0;k<1450;k++){
+        const x=rng()*N,y=rng()*N,m=rng(),rad=m>.997?3.4:m>.96?1.5:.35+rng()*.53;
+        const alpha=.16+rng()*.76;ctx.fillStyle=`rgba(${m>.85?'255,242,226':'207,224,255'},${alpha})`;
+        ctx.beginPath();ctx.arc(x,y,rad,0,Math.PI*2);ctx.fill();
+        if(m>.994){ctx.save();ctx.translate(x,y);ctx.strokeStyle='rgba(235,241,255,.5)';ctx.lineWidth=.65;ctx.beginPath();ctx.moveTo(-rad*3.8,0);ctx.lineTo(rad*3.8,0);ctx.moveTo(0,-rad*3.8);ctx.lineTo(0,rad*3.8);ctx.stroke();ctx.restore()}
+      }
+    }else{
+      // Fine pale strands give the marble the characteristic stretched mineral look.
+      ctx.globalAlpha=.20;ctx.lineWidth=.7;ctx.strokeStyle='#fff3ed';
+      for(let k=0;k<13;k++){
+        const sx=rng()*N,sy=rng()*N;ctx.beginPath();
+        for(let j=0;j<=38;j++){const t=j/38,px=sx+t*(100+rng()*110)-70,py=sy+Math.sin(t*7+k)*22+t*150-65;j?ctx.lineTo(px,py):ctx.moveTo(px,py)}ctx.stroke()
+      }ctx.globalAlpha=1;
+    }
+  }else{
+    // Splatter is irregular thrown paint, not a set of neat circular polka dots.
+    const g=ctx.createRadialGradient(N*.29,N*.22,20,N/2,N/2,N*.73);
+    g.addColorStop(0,waxHex(waxMix(a,white,.16)));g.addColorStop(.7,primary);g.addColorStop(1,waxHex(waxMix(a,[2,3,9],.56)));
+    ctx.fillStyle=g;ctx.fillRect(0,0,N,N);
+    const pigments=[secondary,waxHex(waxMix(b,white,.54)),waxHex(waxMix(b,a,.34)),
+      waxHex(waxMix(a,white,.78)),'#fff0dc',waxHex(waxMix(b,[252,113,144],.26))];
+    function blob(x,y,r,col){
+      const n=13+Math.floor(rng()*10);ctx.fillStyle=col;ctx.beginPath();
+      for(let j=0;j<=n;j++){const theta=j*Math.PI*2/n,rr=r*(.52+rng()*.83),xx=x+Math.cos(theta)*rr,yy=y+Math.sin(theta)*rr;j?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy)}ctx.closePath();ctx.fill();
+    }
+    for(let s=0;s<46;s++){
+      const x=rng()*N,y=rng()*N,r=8+rng()*41,col=pigments[Math.floor(rng()*pigments.length)];
+      ctx.save();ctx.translate(x,y);ctx.rotate(rng()*Math.PI*2);ctx.scale(1.1+rng()*1.5,.34+rng()*.8);
+      blob(0,0,r,col);ctx.restore();
+      for(let t=0;t<4+rng()*9;t++){
+        const theta=rng()*Math.PI*2,dist=r*(.6+rng()*3.2);blob(x+Math.cos(theta)*dist,y+Math.sin(theta)*dist,1.2+rng()*Math.min(13,r*.35),col)
+      }
+      if(rng()>.38){ctx.strokeStyle=col;ctx.lineWidth=1+rng()*5;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(x,y);ctx.quadraticCurveTo(x+(rng()-.5)*r*3,y+(rng()-.5)*r*3,x+(rng()-.5)*r*6,y+(rng()-.5)*r*6);ctx.stroke()}
+    }
+    for(let k=0;k<820;k++){
+      const x=rng()*N,y=rng()*N,rad=.35+Math.pow(rng(),3)*8;
+      ctx.fillStyle=pigments[Math.floor(rng()*pigments.length)];ctx.globalAlpha=.35+rng()*.62;
+      ctx.beginPath();ctx.ellipse(x,y,rad,rad*(.55+rng()*.9),rng()*6,0,Math.PI*2);ctx.fill()
+    }ctx.globalAlpha=1;
+  }
+  return canvas;
+}
+function waxPatternNeeded(){return ['marble','splatter','galaxy'].includes(settings.pattern)}
+function getWaxPatternCanvas(){
+  if(!waxPatternNeeded())return null;
+  const key=settings.pattern+'|'+settings.color+'|'+settings.color2;
+  if(key!==waxPatternKey||!waxPatternCanvas){waxPatternCanvas=makeWaxPattern(settings.pattern,settings.color,settings.color2);waxPatternKey=key}
+  return waxPatternCanvas;
+}
+function scheduleWaxPattern(){
+  if(waxPatternTimer!==null)clearTimeout(waxPatternTimer);
+  waxPatternTimer=setTimeout(()=>{waxPatternTimer=null;
+    const canvas=getWaxPatternCanvas();
+    if(canvas)record.style.setProperty('--vinyl-texture',`url("${canvas.toDataURL('image/png')}")`);
+    else record.style.removeProperty('--vinyl-texture');
+  },80);
+}
+function setColor(hex,secondary=false){if(secondary){settings.color2=hex;$('customColor2').value=hex;document.documentElement.style.setProperty('--disc2',hex)}else{settings.color=hex;$('customColor').value=hex;document.documentElement.style.setProperty('--disc',hex);document.documentElement.style.setProperty('--disc-light',contrastColor(hex));Array.from($('swatches').children).forEach(x=>x.classList.toggle('active',x.dataset.color.toLowerCase()===(hex||'').toLowerCase()))}scheduleWaxPattern();safeSave()}
 function refreshArt(){if(settings.art){document.documentElement.style.setProperty('--art',`url("${settings.art}")`);sleeveFront.classList.add('covered');if(settings.pattern==='picture')labelDisc.classList.add('covered');else labelDisc.classList.add('covered')}else{document.documentElement.style.setProperty('--art','none');sleeveFront.classList.remove('covered');labelDisc.classList.remove('covered')}}
 function updateSticker(){const s=$('sticker');s.textContent=settings.stickerText||'Limited edition';s.className='sticker '+('shape-'+(settings.stickerShape||'circle'));s.style.background=(settings.stickerColor||'#f5d67c');s.style.color='#4a2b00';s.classList.toggle('hidden',!settings.stickerEnabled||settings.sleeveView!=='front')}
 function updateSleeveView(){
@@ -627,20 +740,12 @@ function drawRecordCanvas(ctx,x,y,R,angle,art){
     ctx.fillStyle=color;ctx.fillRect(-R,-R,R*2,R*2);ctx.fillStyle=color2;ctx.fillRect(-R,-R,R,R*2);
   }else if(settings.pattern==='clear'){
     const clear=ctx.createRadialGradient(-R*.3,-R*.3,10,0,0,R);clear.addColorStop(0,'#f7ffffaf');clear.addColorStop(.25,'#ffffff19');clear.addColorStop(.8,'#b9e6e14b');clear.addColorStop(1,'#ffffff99');ctx.fillStyle=clear;ctx.fillRect(-R,-R,R*2,R*2);
-  }else if(settings.pattern==='galaxy'){
-    const g=ctx.createLinearGradient(-R,R,R,-R);g.addColorStop(0,color);g.addColorStop(.35,'#242453');g.addColorStop(.7,'#7356aa');g.addColorStop(1,color2);ctx.fillStyle=g;ctx.fillRect(-R,-R,R*2,R*2);
-    for(const [dx,dy,r,c] of [[-.37,-.25,90,'#ec9ed266'],[.4,.2,98,'#84b1ff66'],[-.2,.5,70,'#ffde9666']]){
-      const x0=dx*R,y0=dy*R,neb=ctx.createRadialGradient(x0,y0,2,x0,y0,r);neb.addColorStop(0,c);neb.addColorStop(1,'#ffffff00');ctx.fillStyle=neb;ctx.fillRect(-R,-R,R*2,R*2);
-    }
-    for(let i=0;i<85;i++){let a=i*2.399963,r=Math.sqrt((i*83%97)/97)*R*.97;ctx.fillStyle=i%4===0?'#fff9':'#d6defa99';ctx.beginPath();ctx.arc(Math.cos(a)*r,Math.sin(a)*r,i%13===0?2.1:.75,0,Math.PI*2);ctx.fill()}
+  }else if(waxPatternNeeded()){
+    const painted=getWaxPatternCanvas();
+    if(painted)ctx.drawImage(painted,-R,-R,R*2,R*2);
+    else {ctx.fillStyle=color;ctx.fillRect(-R,-R,R*2,R*2)}
   }else {
     const g=ctx.createRadialGradient(-R*.25,-R*.3,0,0,0,R*1.1);g.addColorStop(0,'#ffffff33');g.addColorStop(.35,color);g.addColorStop(.74,color);g.addColorStop(1,'#090b10');ctx.fillStyle=g;ctx.fillRect(-R,-R,R*2,R*2);
-  }
-  if(settings.pattern==='marble'){
-    ctx.strokeStyle='#f9f0ff6b';ctx.lineWidth=8;for(let i=0;i<8;i++){ctx.beginPath();ctx.arc(R*.15*Math.sin(i*3),-R*.1*Math.cos(i*2),R*.33+i*R*.09,i*.4,i*.4+2.2);ctx.stroke()}
-  }
-  if(settings.pattern==='splatter'){
-    for(let i=0;i<65;i++){const a=i*2.399963,r=Math.sqrt((i*57%101)/101)*R*.96;ctx.fillStyle=['#ffe7c9','#e0baff','#ffffff','#b7d5fa'][i%4];ctx.beginPath();ctx.arc(Math.cos(a)*r,Math.sin(a)*r,1+i%5,0,Math.PI*2);ctx.fill()}
   }
   ctx.strokeStyle=settings.pattern==='clear'?'#ffffff32':'#ffffff19';ctx.lineWidth=.8;
   for(let r=R-8;r>R*.34;r-=4){ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.stroke()}
